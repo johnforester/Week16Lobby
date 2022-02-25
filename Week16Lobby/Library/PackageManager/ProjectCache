@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637810313410352864
+      ticks: 637812791904731743
     m_Hash: 3533102452
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -3661,9 +3661,11 @@ m_PackageAssets:
         - 2.1.6
         - 2.1.7
         - 2.1.8
+        - 2.1.9
         compatible:
         - 2.1.8
-        verified: 2.1.8
+        - 2.1.9
+        verified: 2.1.9
       dependencies:
       - name: com.unity.modules.vr
         version: 1.0.0
