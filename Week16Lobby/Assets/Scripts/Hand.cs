@@ -165,4 +165,27 @@ public class Hand : MonoBehaviour
             }
         }
     }
+
+    public void InteractionCleanup()
+    {
+        XRDirectInteractor directInteractor = (XRDirectInteractor)interactor;
+
+        if (directInteractor != null)
+        {
+            List<XRBaseInteractable> validTargets = new List<XRBaseInteractable>();
+
+            interactor.GetValidTargets(validTargets);
+
+            interactor.interactionManager.ClearInteractorSelection(interactor);
+            interactor.interactionManager.ClearInteractorHover(interactor, validTargets);
+
+            foreach (var target in validTargets)
+            {
+                if(target.gameObject.scene != interactor.gameObject.scene)
+                {
+                    target.transform.position = new Vector3(100, 100, 100);
+                }
+            }
+        }
+    }
 }

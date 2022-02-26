@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CheckWin : MonoBehaviour
 {
     [SerializeField] GameObject winMessage;
+
+    public UnityEvent onWin = new UnityEvent();
 
     void Start()
     {
@@ -13,7 +16,9 @@ public class CheckWin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("MainCamera") && !winMessage.activeInHierarchy)
+        onWin?.Invoke();
+
+        if (other.gameObject.CompareTag("MainCamera") && !winMessage.activeInHierarchy)
         {
             winMessage.SetActive(true);
         }

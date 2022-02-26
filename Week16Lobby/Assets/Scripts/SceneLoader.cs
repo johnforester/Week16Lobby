@@ -9,10 +9,11 @@ public class SceneLoader : Singleton<SceneLoader>
     [SerializeField] Material SceneFade = null;
 
     [Range(0.0f, 5.0f)]
-    [SerializeField] float AddedWaitTime = 1.0f;
+    [SerializeField] float AddedWaitTime = 0.1f;
 
-    [SerializeField] UnityEvent onSceneLoadStart = new UnityEvent();
-    [SerializeField] UnityEvent onSceneLoadFinish = new UnityEvent();
+    public UnityEvent onSceneLoadStart = new UnityEvent();
+    public UnityEvent onSceneLoadFinish = new UnityEvent();
+    public UnityEvent onBeforeUnload = new UnityEvent();
 
     [Min(0.0f)]
     [SerializeField] float m_fadeSpeed = 1.0f;
@@ -60,15 +61,20 @@ public class SceneLoader : Singleton<SceneLoader>
         onSceneLoadStart?.Invoke();
 
         yield return FadeOut();
+
+        onBeforeUnload?.Invoke();
+        yield return new WaitForSeconds(0);
+
         yield return StartCoroutine(UnloadCurrentScene());
 
         yield return new WaitForSeconds(AddedWaitTime);
 
         yield return LoadNewScene(sceneName);
         yield return FadeIn();
-        onSceneLoadFinish?.Invoke();
-        m_isLoading = false;
 
+        onSceneLoadFinish?.Invoke();
+
+        m_isLoading = false;
     }
 
     

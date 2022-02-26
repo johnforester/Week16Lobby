@@ -55,6 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7621062429283012387}
   - component: {fileID: 7621062429283012412}
+  - component: {fileID: 564823583}
   m_Layer: 0
   m_Name: HandVisualLeft
   m_TagString: Untagged
@@ -69,7 +70,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7621062429283012386}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -144,6 +145,19 @@ MonoBehaviour:
     m_Flags: 0
   handAnimator: {fileID: 4083047764427210101}
   interactor: {fileID: 0}
+--- !u!114 &564823583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621062429283012386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 036e1c0199c40d7408fe5cace5a4c1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applyToChildren: 1
 --- !u!1 &7621062429358556181
 GameObject:
   m_ObjectHideFlags: 0
