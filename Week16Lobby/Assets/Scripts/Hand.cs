@@ -168,16 +168,16 @@ public class Hand : MonoBehaviour
 
     public void InteractionCleanup()
     {
-        XRDirectInteractor directInteractor = (XRDirectInteractor)interactor;
+        var directInteractor = interactor as XRDirectInteractor;
 
         if (directInteractor != null)
         {
             List<XRBaseInteractable> validTargets = new List<XRBaseInteractable>();
 
-            interactor.GetValidTargets(validTargets);
+            directInteractor.GetValidTargets(validTargets);
 
-            interactor.interactionManager.ClearInteractorSelection(interactor);
-            interactor.interactionManager.ClearInteractorHover(interactor, validTargets);
+            directInteractor.interactionManager.ClearInteractorSelection(directInteractor);
+            directInteractor.interactionManager.ClearInteractorHover(directInteractor, validTargets);
 
             foreach (var target in validTargets)
             {

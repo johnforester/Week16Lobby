@@ -25,6 +25,7 @@ public class SceneLoader : Singleton<SceneLoader>
     static readonly int m_fadeAmountPropID = Shader.PropertyToID("_FadeAmount");
 
     Scene m_persistentScene;
+    string m_currentScene = null;
 
     private void Awake()
     {
@@ -75,12 +76,24 @@ public class SceneLoader : Singleton<SceneLoader>
         onSceneLoadFinish?.Invoke();
 
         m_isLoading = false;
+        m_currentScene = sceneName;
     }
 
     
     IEnumerator UnloadCurrentScene()
     {
-        AsyncOperation unload = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        Scene sceneToUnload;
+
+        if (m_currentScene != null)
+        {
+            sceneToUnload = SceneManager.GetSceneByName(m_currentScene);
+        }
+        else
+        {
+            sceneToUnload = SceneManager.GetActiveScene();
+        }
+
+        AsyncOperation unload = SceneManager.UnloadSceneAsync(sceneToUnload);
 
         while(!unload.isDone)
         {
